@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+#web app is a simple serialisation app
     'webapp',
+#the to do application
     'todo',
 
 ]

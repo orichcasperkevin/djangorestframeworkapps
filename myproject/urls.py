@@ -21,8 +21,12 @@ from webapp import views
 urlpatterns = [
 
     path('admin/', admin.site.urls),
+#url for testing the webapp application
     path('employees/', views.EmployeeList.as_view()),
+#todo urls for  UI users
     path('', include('todo.urls')),
+#totdo urls for API users
+    path('', include('todo.api.urls')),
 
 
 ]
