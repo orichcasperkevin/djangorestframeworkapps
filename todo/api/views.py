@@ -1,23 +1,24 @@
 '''
-    api views for the apps API 
+    api views for the apps API
 '''
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
+from rest_framework import generics
 
 from  todo.models import Task,SubTask
-from  .serializers import TaskSerializer
+from  .serializers import TaskSerializer,SubTaskSerializer
 
-class TaskList(APIView):
-    def get(self, request):
-        tasks = Task.objects.all()[:20]
-        data = TaskSerializer(tasks, many=True).data
-        return Response(data)
+class TaskList(generics.ListCreateAPIView):
+        queryset = Task.objects.all()
+        serializer_class = TaskSerializer
 
 
-class TaskDetail(APIView):
-    def get(self, request, pk):
-        tasks = get_object_or_404(Task, pk=pk)
-        data = TaskSerializer(tasks).data
-        return Response(data)
+class TaskDetail(generics.RetrieveDestroyAPIView):
+        queryset = Task.objects.all()
+        serializer_class = TaskSerializer
+#subtask for listing  subtask
+class SubTaskList(generics.ListCreateAPIView):
+        queryset = SubTask.objects.all()
+        serializer_class = SubTaskSerializer
+#subtask creation view
+class SubTaskCreate(generics.CreateAPIView):
+        queryset = SubTask.objects.all()
+        serializer_class = SubTaskSerializer
