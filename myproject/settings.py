@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'webapp',
 #the to do application
     'todo',
+#Authetication to enable rest_framework.authtoken app
+    'rest_framework.authtoken'
+
 
 ]
 
@@ -124,3 +127,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# authentication by the rest rest_framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
